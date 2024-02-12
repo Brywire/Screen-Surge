@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Software Developer\\schooljaar_2023-2024\\Periode 3\\ScreenSurge\\ScreenSurge.csproj": {}
+    "D:\\GitHub\\Screen-Surge\\ScreenSurge.csproj": {}
   },
   "projects": {
-    "D:\\Software Developer\\schooljaar_2023-2024\\Periode 3\\ScreenSurge\\ScreenSurge.csproj": {
+    "D:\\GitHub\\Screen-Surge\\ScreenSurge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Software Developer\\schooljaar_2023-2024\\Periode 3\\ScreenSurge\\ScreenSurge.csproj",
+        "projectUniqueName": "D:\\GitHub\\Screen-Surge\\ScreenSurge.csproj",
         "projectName": "ScreenSurge",
-        "projectPath": "D:\\Software Developer\\schooljaar_2023-2024\\Periode 3\\ScreenSurge\\ScreenSurge.csproj",
+        "projectPath": "D:\\GitHub\\Screen-Surge\\ScreenSurge.csproj",
         "packagesPath": "C:\\Users\\babui\\.nuget\\packages\\",
-        "outputPath": "D:\\Software Developer\\schooljaar_2023-2024\\Periode 3\\ScreenSurge\\obj\\",
+        "outputPath": "D:\\GitHub\\Screen-Surge\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

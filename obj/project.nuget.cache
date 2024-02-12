@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q2MOUkdCxb6LzpHGpdoObZU35zzOiCwHPM+8m8uU3/kDg99VhdqOydY3qs9ujN041IU/dbv67WSClH8LXoZZZg==",
+  "dgSpecHash": "4YiWYor0V7DmXZZsWL9hi3MONdhY10juQvl8F2Efq/sdEO+MwH346yHn1lbIRnJbF58lgURTWboGjS9Ya8zbew==",
   "success": true,
-  "projectFilePath": "D:\\Software Developer\\schooljaar_2023-2024\\Periode 3\\ScreenSurge\\ScreenSurge.csproj",
+  "projectFilePath": "D:\\GitHub\\Screen-Surge\\ScreenSurge.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\babui\\.nuget\\packages\\raylib-cs\\6.0.0\\raylib-cs.6.0.0.nupkg.sha512",
     "C:\\Users\\babui\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
