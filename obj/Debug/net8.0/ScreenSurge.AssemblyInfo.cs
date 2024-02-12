@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ScreenSurge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97c0e314d1b64c8c88f3cf7b0da6e158d0529ac6")]
 [assembly: System.Reflection.AssemblyProductAttribute("ScreenSurge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ScreenSurge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
