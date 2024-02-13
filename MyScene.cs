@@ -7,46 +7,74 @@ namespace HelloWorld
     {
         public static void Main()
         {
-            const int screenWidth =  800;
-            const int screenHeight =  800;
+            const int screenWidth = 800;
+            const int screenHeight = 800;
 
+            //Making the window
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
 
+            //Loading in the player ship sprite
             Image playership = Raylib.LoadImage("resources/player_ship.png");
             Texture2D texture = Raylib.LoadTextureFromImage(playership);
             Raylib.UnloadImage(playership);
 
-            Vector2 playershipPosition = new Vector2(screenWidth /  2 - texture.Width /  2, screenHeight /  2 - texture.Height /  2);
-            float speed =  5.0f;
+            //Setting initial position
+            Vector2 playershipPosition = new Vector2(screenWidth / 2 - texture.Width / 2, screenHeight / 2 - texture.Height / 2);
+
+            float speed = 5.0f;
+
+            //List with bullets
+            List<Bullet> bullets = new List<Bullet>();
+
+            //Loading in the texture for the bullet
+            Texture2D bulletTexture = Raylib.LoadTexture("resources/bullet.png");
+
 
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())
             {
-                // Update
+                //Cursor position
+                Vector2 cursorPosition = Raylib.GetMousePosition();
+                //Movement
                 if (Raylib.IsKeyDown(KeyboardKey.W)) playershipPosition.Y -= speed;
                 if (Raylib.IsKeyDown(KeyboardKey.S)) playershipPosition.Y += speed;
                 if (Raylib.IsKeyDown(KeyboardKey.A)) playershipPosition.X -= speed;
                 if (Raylib.IsKeyDown(KeyboardKey.D)) playershipPosition.X += speed;
 
-                // Draw
+                if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+                {
+                    Vector2 bulletDirection = Vector2.Normalize(new Vector2(cursorPosition.X - playershipPosition.X, cursorPosition.Y - playershipPosition.Y));
+                    bullets.Add(new Bullet(playershipPosition, bulletDirection, "resources/bullet.png"));
+                }
+
+                foreach (var bullet in bullets)
+                {
+                    bullet.Update();
+                    bullet.Draw();
+                }
+
+
+
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RayWhite);
 
-                // Get the cursor's position
-                Vector2 cursorPosition = Raylib.GetMousePosition();
-                // Calculate the angle to the cursor
+                //Calculate ship angle to cursor
                 float angle = MathF.Atan2(cursorPosition.Y - playershipPosition.Y, cursorPosition.X - playershipPosition.X) * (180.0f / MathF.PI);
-                // Subtract  90 degrees from the angle to align the sprite correctly
-                angle +=  90.0f;
 
-                // Draw the playership at its current position rotated by the angle
-                Raylib.DrawTexturePro(texture, new Rectangle(0,  0, texture.Width, texture.Height), new Rectangle((int)playershipPosition.X, (int)playershipPosition.Y, texture.Width, texture.Height), new Vector2(texture.Width /  2, texture.Height /  2), angle, Color.White);
+                //Turn the ship 90 degrees to properly look at the cursor
+                angle += 90.0f;
+
+                //Draw the ship at its current position rotated by the angle
+                Raylib.DrawTexturePro(texture, new Rectangle(0, 0, texture.Width, texture.Height),
+                new Rectangle((int)playershipPosition.X, (int)playershipPosition.Y, texture.Width, texture.Height),
+                new Vector2(texture.Width / 2, texture.Height / 2), angle, Color.White);
 
                 Raylib.EndDrawing();
             }
 
             Raylib.UnloadTexture(texture);
+            Raylib.UnloadTexture(bulletTexture);
             Raylib.CloseWindow();
         }
     }
