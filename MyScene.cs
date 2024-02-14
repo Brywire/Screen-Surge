@@ -23,6 +23,8 @@ namespace HelloWorld
 
             float speed = 5.0f;
 
+            float scaleFactor = 1.5f;
+
             //List with bullets
             List<Bullet> bullets = new List<Bullet>();
 
@@ -36,6 +38,7 @@ namespace HelloWorld
             {
                 //Cursor position
                 Vector2 cursorPosition = Raylib.GetMousePosition();
+
                 //Movement
                 if (Raylib.IsKeyDown(KeyboardKey.W)) playershipPosition.Y -= speed;
                 if (Raylib.IsKeyDown(KeyboardKey.S)) playershipPosition.Y += speed;
@@ -44,10 +47,14 @@ namespace HelloWorld
 
                 if (Raylib.IsMouseButtonPressed(MouseButton.Left))
                 {
+                    //Set direction
                     Vector2 bulletDirection = Vector2.Normalize(new Vector2(cursorPosition.X - playershipPosition.X, cursorPosition.Y - playershipPosition.Y));
+
+                    //Spawn bullet, initial position, give direction
                     bullets.Add(new Bullet(playershipPosition, bulletDirection, "resources/bullet.png"));
                 }
 
+                //Update bullets
                 foreach (var bullet in bullets)
                 {
                     bullet.Update();
@@ -57,7 +64,7 @@ namespace HelloWorld
 
 
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.RayWhite);
+                Raylib.ClearBackground(Color.Black);
 
                 //Calculate ship angle to cursor
                 float angle = MathF.Atan2(cursorPosition.Y - playershipPosition.Y, cursorPosition.X - playershipPosition.X) * (180.0f / MathF.PI);
@@ -65,10 +72,15 @@ namespace HelloWorld
                 //Turn the ship 90 degrees to properly look at the cursor
                 angle += 90.0f;
 
-                //Draw the ship at its current position rotated by the angle
+                // Calculate the scaled width and height
+                int scaledWidth = (int)(texture.Width * scaleFactor);
+                int scaledHeight = (int)(texture.Height * scaleFactor);
+
+                // Draw the ship at its current position rotated by the angle
                 Raylib.DrawTexturePro(texture, new Rectangle(0, 0, texture.Width, texture.Height),
-                new Rectangle((int)playershipPosition.X, (int)playershipPosition.Y, texture.Width, texture.Height),
-                new Vector2(texture.Width / 2, texture.Height / 2), angle, Color.White);
+                    new Rectangle((int)playershipPosition.X, (int)playershipPosition.Y, scaledWidth, scaledHeight),
+                    new Vector2(scaledWidth / 2, scaledHeight / 2), angle, Color.White);
+
 
                 Raylib.EndDrawing();
             }

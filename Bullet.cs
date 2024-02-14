@@ -6,8 +6,8 @@ class Bullet
     public Vector2 Position;
     public Vector2 Direction;
     public Texture2D Texture;
-    public float Speed =  15.0f;
-    private float scaleFactor =  0.7f; // Scale factor for bullet size
+    public float Speed =  15.0f; //Bullet speed factor
+    private float scaleFactor =  1.4f; //Bullet scale factor
 
     public Bullet(Vector2 position, Vector2 direction, string texturePath)
     {
@@ -27,12 +27,16 @@ class Bullet
     public void Update()
     {
         Position += Direction * Speed;
-        // Add any logic to remove the bullet if it goes off-screen or hits something
+        /*
+        TODO
+            Remove bullet once is it off-screen for a couple seconds
+            Remove bullet once it hits an enemy
+        */
     }
 
     public void Draw()
     {
-        //Scaled texture dimensions
+        //Scaled texture
         int scaledWidth = (int)(Texture.Width * scaleFactor);
         int scaledHeight = (int)(Texture.Height * scaleFactor);
         
