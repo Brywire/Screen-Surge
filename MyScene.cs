@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 
-namespace HelloWorld
+namespace ScreenSurge
 {
     class MyScene
     {
