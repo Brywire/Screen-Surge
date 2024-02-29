@@ -7,8 +7,8 @@ namespace ScreenSurge
     {
         public static void Main()
         {
-            const int screenWidth = 800;
-            const int screenHeight = 800;
+            const int screenWidth = 500;
+            const int screenHeight = 500;
 
             //Making the window
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
