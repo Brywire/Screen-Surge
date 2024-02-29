@@ -13,10 +13,8 @@ namespace ScreenSurge
             //Making the window
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
 
-            //Loading in the player ship sprite
-            Image playership = Raylib.LoadImage("resources/player_ship.png");
-            Texture2D texture = Raylib.LoadTextureFromImage(playership);
-            Raylib.UnloadImage(playership);
+            //Loading the player sprite
+            Texture2D texture = Raylib.LoadTexture("resources/player_ship.png");
 
             //Setting initial position
             Vector2 playershipPosition = new Vector2(screenWidth / 2 - texture.Width / 2, screenHeight / 2 - texture.Height / 2);
