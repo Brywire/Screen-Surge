@@ -1,10 +1,4 @@
-.idea/
-.vscode/
-.vs/
-cmake-build-debug/
-bin/
-build/
-out/
-libs/
-doc/
-CMakeSettings.json
+.vs*
+
+obj
+bin
