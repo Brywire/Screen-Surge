@@ -14,7 +14,7 @@ namespace ScreenSurge
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
 
             //Loading the player sprite
-            Texture2D texture = Raylib.LoadTexture("resources/player_ship.png");
+            Texture2D texture = Raylib.LoadTexture("resources/playerShipSprite.png");
 
             //Setting initial position
             Vector2 playershipPosition = new Vector2(screenWidth / 2 - texture.Width / 2, screenHeight / 2 - texture.Height / 2);
@@ -27,7 +27,7 @@ namespace ScreenSurge
             List<Bullet> bullets = new List<Bullet>();
 
             //Loading in the texture for the bullet
-            Texture2D bulletTexture = Raylib.LoadTexture("resources/bullet.png");
+            Texture2D bulletTexture = Raylib.LoadTexture("resources/bulletSprite.png");
 
 
             Raylib.SetTargetFPS(60);
@@ -49,7 +49,7 @@ namespace ScreenSurge
                     Vector2 bulletDirection = Vector2.Normalize(new Vector2(cursorPosition.X - playershipPosition.X, cursorPosition.Y - playershipPosition.Y));
 
                     //Spawn bullet, initial position, give direction
-                    bullets.Add(new Bullet(playershipPosition, bulletDirection, "resources/bullet.png"));
+                    bullets.Add(new Bullet(playershipPosition, bulletDirection, "resources/bulletSprite.png"));
                 }
 
                 //Update bullets
