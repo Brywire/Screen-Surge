@@ -67,8 +67,6 @@ namespace ScreenSurge
                 //Calculate ship angle to cursor
                 float angle = MathF.Atan2(cursorPosition.Y - playershipPosition.Y, cursorPosition.X - playershipPosition.X) * (180.0f / MathF.PI);
 
-                //Turn the ship 90 degrees to properly look at the cursor
-                angle += 90.0f;
 
                 // Calculate the scaled width and height
                 int scaledWidth = (int)(texture.Width * scaleFactor);

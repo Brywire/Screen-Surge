@@ -20,7 +20,7 @@ class Bullet
     {
         get
         {
-            return MathF.Atan2(Direction.Y, Direction.X) * (180.0f / MathF.PI) + 90.0f;
+            return MathF.Atan2(Direction.Y, Direction.X) * (180.0f / MathF.PI);
         }
     }
 
