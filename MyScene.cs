@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Raylib_cs;
 
@@ -18,8 +19,20 @@ namespace ScreenSurge
 
             Player playerShip = new Player(Raylib.GetMousePosition());
 
-            //Loading in the texture for the bullet
-            Texture2D bulletTexture = Raylib.LoadTexture("resources/bulletSprite.png");
+            void updateBullets()
+            {
+                foreach (var bullet in bullets)
+                {
+                    bullet.Update();
+                    bullet.Draw();
+                }
+            }
+
+            void updatePlayer()
+            {
+                playerShip.Update();
+                playerShip.Draw();
+            }
 
 
             Raylib.SetTargetFPS(60);
@@ -28,21 +41,18 @@ namespace ScreenSurge
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.Black);
-                //Update bullets
-                foreach (var bullet in bullets)
-                {
-                    bullet.Update();
-                    bullet.Draw();
-                }
 
-                playerShip.Update();
-                playerShip.Draw();
+                updateBullets();
+                updatePlayer();
 
                 Raylib.EndDrawing();
             }
 
-            Raylib.UnloadTexture(bulletTexture);
             playerShip.Destroy();
+            foreach (var bullet in bullets)
+            {
+                bullet.Destroy();
+            }
             Raylib.CloseWindow();
         }
     }
