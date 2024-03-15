@@ -11,6 +11,7 @@ namespace ScreenSurge
         public const int screenWidth = 500;
         public const int screenHeight = 500;
         static public List<Bullet> bullets = new List<Bullet>();
+        static public List<Enemy> enemies = new List<Enemy>();
         public static void Main()
         {
 
@@ -18,6 +19,8 @@ namespace ScreenSurge
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
 
             Player playerShip = new Player(Raylib.GetMousePosition());
+            enemies.Add(new Enemy());
+            double lastEnemySpawnTime = Raylib.GetTime();
 
             void updateBullets()
             {
@@ -34,6 +37,24 @@ namespace ScreenSurge
                 playerShip.Draw();
             }
 
+            void updateEnemy()
+            {
+                foreach (var enemy in enemies)
+                {
+                    enemy.Update();
+                    enemy.Draw();
+                }
+            }
+
+            void enemySpawner()
+            {
+                // Check if 5 seconds have passed since the last enemy spawn
+                if (Raylib.GetTime() - lastEnemySpawnTime >= 5.0)
+                {
+                    enemies.Add(new Enemy()); // Create a new enemy
+                    lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
+                }
+            }
 
             Raylib.SetTargetFPS(60);
 
@@ -44,6 +65,8 @@ namespace ScreenSurge
 
                 updateBullets();
                 updatePlayer();
+                updateEnemy();
+                //enemySpawner();
 
                 Raylib.EndDrawing();
             }
@@ -52,6 +75,10 @@ namespace ScreenSurge
             foreach (var bullet in bullets)
             {
                 bullet.Destroy();
+            }
+            foreach (var enemy in enemies)
+            {
+                enemy.Destroy();
             }
             Raylib.CloseWindow();
         }
