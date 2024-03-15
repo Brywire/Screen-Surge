@@ -55,11 +55,12 @@ class Player : Entity
     {
         if (Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
-            // Set bullet direction
-            Vector2 bulletDirection = Vector2.Normalize(new Vector2(direction.X - position.X, direction.Y - position.Y));
+            // Calculate the direction from the player to the mouse cursor
+            Vector2 bulletDirection = Vector2.Normalize(new Vector2(Raylib.GetMousePosition().X - position.X,
+                                                        Raylib.GetMousePosition().Y - position.Y));
 
-            // Spawn bullet, initial position, give direction
-            MyScene.bullets.Add(new Bullet(position, bulletDirection, "resources/bulletSprite.png"));
+            // Spawn bullet at the player's position, with the calculated direction
+            MyScene.bullets.Add(new Bullet(bulletDirection, position));
         }
     }
 }
