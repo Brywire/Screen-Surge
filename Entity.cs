@@ -28,11 +28,11 @@ abstract public class Entity
 
     public void Draw()
     {
-        //Scaled texture
+        // Scaled texture
         int scaledWidth = (int)(texture.Width * scaleFactor);
         int scaledHeight = (int)(texture.Height * scaleFactor);
 
-        //Calculate the rectangle for the destination area considering the scaled dimensions
+        // Calculate the rectangle for the destination area considering the scaled dimensions
         Rectangle destRec = new Rectangle(
             (int)position.X - scaledWidth / 2,
             (int)position.Y - scaledHeight / 2,
@@ -40,7 +40,7 @@ abstract public class Entity
             scaledHeight
         );
 
-        //Draw the bullet texture with the scaling applied
+        // Draw the texture with the scaling applied
         Raylib.DrawTexturePro(
             texture,
             new Rectangle(0, 0, texture.Width, texture.Height),
