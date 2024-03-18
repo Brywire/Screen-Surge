@@ -68,6 +68,7 @@ namespace ScreenSurge
                 updatePlayer();
                 updateEnemy();
                 //enemySpawner();
+                DrawCircle(Raylib.GetMouseX(), Raylib.GetMouseY(), 5.0f, Color.White);
 
                 Raylib.EndDrawing();
             }

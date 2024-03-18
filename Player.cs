@@ -29,7 +29,12 @@ class Player : Entity
     {
         get
         {
-            return MathF.Atan2(direction.Y - position.Y, direction.X - position.X) * (180.0f / MathF.PI);
+            Vector2 dist = new Vector2(direction.X - position.X, direction.Y - position.Y);
+            float result = MathF.Atan2(dist.Y, dist.X) * (180.0f / MathF.PI);
+            // Console.WriteLine(result);
+            //Console.WriteLine(dist);
+            return result;
+
 
         }
     }
@@ -56,8 +61,7 @@ class Player : Entity
         if (Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             // Calculate the direction from the player to the mouse cursor
-            Vector2 bulletDirection = Vector2.Normalize(new Vector2(Raylib.GetMousePosition().X - position.X,
-                                                        Raylib.GetMousePosition().Y - position.Y));
+            Vector2 bulletDirection = Vector2.Normalize(new Vector2(Raylib.GetMousePosition().X - position.X, Raylib.GetMousePosition().Y - position.Y));
 
             // Spawn bullet at the player's position, with the calculated direction
             MyScene.bullets.Add(new Bullet(bulletDirection, position));

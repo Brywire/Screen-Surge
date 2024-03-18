@@ -34,18 +34,19 @@ abstract public class Entity
 
         // Calculate the rectangle for the destination area considering the scaled dimensions
         Rectangle destRec = new Rectangle(
-            (int)position.X - scaledWidth / 2,
-            (int)position.Y - scaledHeight / 2,
+            (int)position.X,
+            (int)position.Y,
             scaledWidth,
             scaledHeight
         );
 
+        Vector2 pivot = new Vector2(scaledWidth / 2, scaledHeight / 2);
         // Draw the texture with the scaling applied
         Raylib.DrawTexturePro(
             texture,
             new Rectangle(0, 0, texture.Width, texture.Height),
             destRec,
-            new Vector2(scaledWidth / 2, scaledHeight / 2), Angle, // Origin is now the center of the scaled image
+            pivot, Angle, // Origin is now the center of the scaled image
             Color.White
         );
     }
