@@ -15,6 +15,7 @@ abstract public class Entity
         this.direction = direction;
     }
 
+        // Rotation angle to cursor
         public virtual float Angle
     {
         get
@@ -40,13 +41,15 @@ abstract public class Entity
             scaledHeight
         );
 
-        Vector2 pivot = new Vector2(scaledWidth / 2, scaledHeight / 2);
+        // Origin is now the center of the scaled image
+        Vector2 pivot = new Vector2(scaledWidth / 2, scaledHeight / 2); 
+
         // Draw the texture with the scaling applied
         Raylib.DrawTexturePro(
             texture,
             new Rectangle(0, 0, texture.Width, texture.Height),
             destRec,
-            pivot, Angle, // Origin is now the center of the scaled image
+            pivot, Angle,
             Color.White
         );
     }
