@@ -15,8 +15,8 @@ abstract public class Entity
         this.direction = direction;
     }
 
-        // Rotation angle to cursor
-        public virtual float Angle
+    // Rotation angle to cursor
+    public virtual float Angle
     {
         get
         {
@@ -24,8 +24,17 @@ abstract public class Entity
         }
     }
 
+    public Rectangle getCollisionBox()
+    {
+        return new Rectangle(
+            (int)position.X,
+            (int)position.Y,
+            texture.Width,
+            texture.Height
+        );
+    }
+
     public abstract void Update();
-   
 
     public void Draw()
     {
@@ -40,9 +49,9 @@ abstract public class Entity
             scaledWidth,
             scaledHeight
         );
-
+        
         // Origin is now the center of the scaled image
-        Vector2 pivot = new Vector2(scaledWidth / 2, scaledHeight / 2); 
+        Vector2 pivot = new Vector2(scaledWidth / 2, scaledHeight / 2);
 
         // Draw the texture with the scaling applied
         Raylib.DrawTexturePro(
@@ -53,7 +62,7 @@ abstract public class Entity
             Color.White
         );
     }
-    
+
     public void Destroy()
     {
         Raylib.UnloadTexture(texture);

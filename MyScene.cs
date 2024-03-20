@@ -57,6 +57,27 @@ namespace ScreenSurge
                 }
             }
 
+            void checkCollisions()
+            {
+                for (int i = bullets.Count - 1; i >= 0; i--)
+                {
+                    Bullet bullet = bullets[i];
+                    for (int j = enemies.Count - 1; j >= 0; j--)
+                    {
+                        Enemy enemy = enemies[j];
+                        if (Raylib.CheckCollisionRecs(bullet.getCollisionBox(), enemy.getCollisionBox()))
+                        {
+                            // Collision detected, destroy both the bullet and the enemy
+                            bullet.Destroy();
+                            bullets.RemoveAt(i);
+                            enemy.Destroy();
+                            enemies.RemoveAt(j);
+                            break; // Break the inner loop as the bullet has been destroyed
+                        }
+                    }
+                }
+            }
+
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())
@@ -67,8 +88,11 @@ namespace ScreenSurge
                 updateBullets();
                 updatePlayer();
                 updateEnemy();
-                //enemySpawner();
-                DrawCircle(Raylib.GetMouseX(), Raylib.GetMouseY(), 5.0f, Color.White);
+                checkCollisions();
+                enemySpawner();
+
+                // Debug code for knowing where cursor position is in window
+                //DrawCircle(Raylib.GetMouseX(), Raylib.GetMouseY(), 5.0f, Color.White);
 
                 Raylib.EndDrawing();
             }
