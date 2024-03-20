@@ -31,11 +31,7 @@ class Player : Entity
         {
             Vector2 dist = new Vector2(direction.X - position.X, direction.Y - position.Y);
             float result = MathF.Atan2(dist.Y, dist.X) * (180.0f / MathF.PI);
-            // Console.WriteLine(result);
-            //Console.WriteLine(dist);
             return result;
-
-
         }
     }
     public void Move()
