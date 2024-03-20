@@ -4,6 +4,17 @@ using System.Security.Cryptography.X509Certificates;
 using Raylib_cs;
 using static Raylib_cs.Raylib;
 
+/*
+    TODO:
+    - Make the enemy spawn from the edge of the screen
+    - Make the enemy spawn from different edges
+    - Make the enemy spawn from random edges, max 2 in a row
+    - Adjust window size in realtime
+
+    BUGS:
+    - All textures get unloaded when collision is detected
+    - Collision area is not 100% accurate
+*/
 namespace ScreenSurge
 {
 
@@ -50,7 +61,7 @@ namespace ScreenSurge
             void enemySpawner()
             {
                 // Check if 5 seconds have passed since the last enemy spawn
-                if (Raylib.GetTime() - lastEnemySpawnTime >= 5.0)
+                if (Raylib.GetTime() - lastEnemySpawnTime >= 3.0)
                 {
                     enemies.Add(new Enemy()); // Create a new enemy
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer

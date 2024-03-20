@@ -24,6 +24,7 @@ abstract public class Entity
         }
     }
 
+    // Create collision area
     public Rectangle getCollisionBox()
     {
         return new Rectangle(
