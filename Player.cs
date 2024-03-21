@@ -24,6 +24,11 @@ class Player : Entity
         Shoot();
     }
 
+    public Vector2 Position
+    {
+        get { return position; }
+    }
+
     // Rotate sprite to cursor
     public override float Angle
     {

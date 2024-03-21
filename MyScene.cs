@@ -31,7 +31,7 @@ namespace ScreenSurge
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
 
             Player playerShip = new Player(Raylib.GetMousePosition());
-            enemies.Add(new Enemy());
+            //enemies.Add(new Enemy());
             double lastEnemySpawnTime = Raylib.GetTime();
 
             void updateBullets()
