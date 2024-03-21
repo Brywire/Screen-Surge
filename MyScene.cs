@@ -31,7 +31,6 @@ namespace ScreenSurge
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
 
             Player playerShip = new Player(Raylib.GetMousePosition());
-            //enemies.Add(new Enemy());
             double lastEnemySpawnTime = Raylib.GetTime();
 
             void updateBullets()
@@ -60,7 +59,7 @@ namespace ScreenSurge
 
             void enemySpawner()
             {
-                // Check if 5 seconds have passed since the last enemy spawn
+                // Check if 3 seconds have passed since the last enemy spawn
                 if (Raylib.GetTime() - lastEnemySpawnTime >= 3.0)
                 {
                     enemies.Add(new Enemy()); // Create a new enemy
@@ -96,14 +95,17 @@ namespace ScreenSurge
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.Black);
 
+                // Methods that need to be updated
                 updateBullets();
                 updatePlayer();
                 updateEnemy();
                 checkCollisions();
                 enemySpawner();
 
-                // Debug code for knowing where cursor position is in window
-                //DrawCircle(Raylib.GetMouseX(), Raylib.GetMouseY(), 5.0f, Color.White);
+                foreach (var enemy in enemies)
+                {
+                    enemy.targetPosition = playerShip.Position;
+                }
 
                 Raylib.EndDrawing();
             }
