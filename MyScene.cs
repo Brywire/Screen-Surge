@@ -88,6 +88,15 @@ namespace ScreenSurge
                 }
             }
 
+            void enemiesLookForPlayer()
+            {
+                foreach (var enemy in enemies)
+                {
+                    enemy.targetPosition = playerShip.Position;
+                }
+
+            }
+
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())
@@ -101,11 +110,7 @@ namespace ScreenSurge
                 updateEnemy();
                 checkCollisions();
                 enemySpawner();
-
-                foreach (var enemy in enemies)
-                {
-                    enemy.targetPosition = playerShip.Position;
-                }
+                enemiesLookForPlayer();
 
                 Raylib.EndDrawing();
             }
