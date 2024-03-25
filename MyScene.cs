@@ -60,7 +60,7 @@ namespace ScreenSurge
             void enemySpawner()
             {
                 // Check if 3 seconds have passed since the last enemy spawn
-                if (Raylib.GetTime() - lastEnemySpawnTime >= 3.0)
+                if (Raylib.GetTime() - lastEnemySpawnTime >= 2.0)
                 {
                     enemies.Add(new Enemy()); // Create a new enemy
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
