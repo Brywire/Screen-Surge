@@ -20,8 +20,8 @@ namespace ScreenSurge
 
     class MyScene
     {
-        public const int screenWidth = 500;
-        public const int screenHeight = 500;
+        public const int screenWidth = 800;
+        public const int screenHeight = 800;
         static public List<Bullet> bullets = new List<Bullet>();
         static public List<Enemy> enemies = new List<Enemy>();
         public static void Main()
@@ -93,23 +93,24 @@ namespace ScreenSurge
                 foreach (var enemy in enemies)
                 {
                     enemy.targetPosition = playerShip.Position;
+                    DrawRectangle((int)enemy.Position.X, (int)enemy.Position.Y, (int)enemy.Texture.Width, (int)enemy.Texture.Height, Color.Red);
                 }
 
             }
-
+            enemies.Add(new Enemy());
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.Black);
-
+                
                 // Methods that need to be updated
                 updateBullets();
                 updatePlayer();
                 updateEnemy();
                 checkCollisions();
-                enemySpawner();
+                //enemySpawner();
                 enemiesLookForPlayer();
 
                 Raylib.EndDrawing();

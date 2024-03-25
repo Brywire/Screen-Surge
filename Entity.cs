@@ -32,6 +32,7 @@ abstract public class Entity
             (int)position.Y,
             texture.Width,
             texture.Height
+            
         );
     }
 
@@ -68,4 +69,9 @@ abstract public class Entity
     {
         Raylib.UnloadTexture(texture);
     }
+
+    // public void drawrex()
+    // {
+    //     DrawRectangle(position.X, this.position.Y, this.scaledWidth)
+    // }
 }
