@@ -75,7 +75,7 @@ namespace ScreenSurge
                     for (int j = enemies.Count - 1; j >= 0; j--)
                     {
                         Enemy enemy = enemies[j];
-                        if (Raylib.CheckCollisionRecs(bullet.getCollisionBox(), enemy.getCollisionBox()))
+                        if (Raylib.CheckCollisionCircles(bullet.GetCenter(), bullet.GetRadius(), enemy.GetCenter(), enemy.GetRadius()))
                         {
                             // Collision detected, destroy both the bullet and the enemy
                             bullet.Destroy();
@@ -93,7 +93,7 @@ namespace ScreenSurge
                 foreach (var enemy in enemies)
                 {
                     enemy.targetPosition = playerShip.Position;
-                    DrawRectangle((int)enemy.Position.X, (int)enemy.Position.Y, (int)enemy.Texture.Width, (int)enemy.Texture.Height, Color.Red);
+                    //DrawRectangle((int)enemy.Position.X, (int)enemy.Position.Y, (int)enemy.Texture.Width, (int)enemy.Texture.Height, Color.Red);
                 }
 
             }
@@ -110,8 +110,9 @@ namespace ScreenSurge
                 updatePlayer();
                 updateEnemy();
                 checkCollisions();
-                //enemySpawner();
+                enemySpawner();
                 enemiesLookForPlayer();
+        
 
                 Raylib.EndDrawing();
             }
