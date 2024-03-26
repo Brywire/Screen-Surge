@@ -32,8 +32,17 @@ abstract public class Entity
             (int)position.Y,
             texture.Width,
             texture.Height
-            
         );
+    }
+
+    public Vector2 GetCenter()
+    {
+        return position;
+    }
+
+    public float GetRadius()
+    {
+        return Math.Min(texture.Width, texture.Height) / 2.0f;
     }
 
     public abstract void Update();
@@ -69,9 +78,4 @@ abstract public class Entity
     {
         Raylib.UnloadTexture(texture);
     }
-
-    // public void drawrex()
-    // {
-    //     DrawRectangle(position.X, this.position.Y, this.scaledWidth)
-    // }
 }
