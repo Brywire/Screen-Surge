@@ -24,22 +24,13 @@ abstract public class Entity
         }
     }
 
-    // Create collision area
-    public Rectangle getCollisionBox()
-    {
-        return new Rectangle(
-            (int)position.X,
-            (int)position.Y,
-            texture.Width,
-            texture.Height
-        );
-    }
-
+    // Center point for collision
     public Vector2 GetCenter()
     {
         return position;
     }
 
+    // Radius for collision
     public float GetRadius()
     {
         return Math.Min(texture.Width, texture.Height) / 2.0f;
@@ -60,7 +51,7 @@ abstract public class Entity
             scaledWidth,
             scaledHeight
         );
-        
+
         // Origin is now the center of the scaled image
         Vector2 pivot = new Vector2(scaledWidth / 2, scaledHeight / 2);
 
