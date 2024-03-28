@@ -59,10 +59,41 @@ namespace ScreenSurge
 
             void enemySpawner()
             {
-                // Check if 3 seconds have passed since the last enemy spawn
-                if (Raylib.GetTime() - lastEnemySpawnTime >= 2.0)
+                // Timer between enemy spawning
+                if (Raylib.GetTime() - lastEnemySpawnTime >= 0.5)
                 {
-                    enemies.Add(new Enemy()); // Create a new enemy
+                    // Randomly select an edge
+                    int edge = Raylib.GetRandomValue(0, 4); // 0 = top, 1 = right, 2 = bottom, 3 = left
+                    Console.WriteLine("current edge is = " + edge);
+
+                    // Randomly select a position on the edge
+                    Vector2 spawnPosition;
+                    switch (edge)
+                    {
+                        case 0: 
+                            // Top edge
+                            spawnPosition = new Vector2(Raylib.GetRandomValue(0, screenWidth), 0);
+                            break;
+                        case 1: 
+                            // Right edge
+                            spawnPosition = new Vector2(screenWidth, Raylib.GetRandomValue(0, screenHeight));
+                            break;
+                        case 2: 
+                            // Bottom edge
+                            spawnPosition = new Vector2(Raylib.GetRandomValue(0, screenWidth), screenHeight);
+                            break;
+                        case 3: 
+                            // Left edge
+                            spawnPosition = new Vector2(0, Raylib.GetRandomValue(0, screenHeight));
+                            break;
+                        default:
+                            spawnPosition = new Vector2(0, 0); // For if something goes wrong
+                            break;
+                    }
+
+                    // Create a new enemy at the new position
+                    enemies.Add(new Enemy(spawnPosition));
+
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
                 }
             }
@@ -93,11 +124,9 @@ namespace ScreenSurge
                 foreach (var enemy in enemies)
                 {
                     enemy.targetPosition = playerShip.Position;
-                    //DrawRectangle((int)enemy.Position.X, (int)enemy.Position.Y, (int)enemy.Texture.Width, (int)enemy.Texture.Height, Color.Red);
                 }
 
             }
-            enemies.Add(new Enemy());
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())

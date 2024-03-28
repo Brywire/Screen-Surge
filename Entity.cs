@@ -9,7 +9,7 @@ abstract public class Entity
     protected Vector2 direction;
     protected float speed;
     protected float scaleFactor;
-
+    
     public Entity(Vector2 direction)
     {
         this.direction = direction;
