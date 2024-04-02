@@ -6,14 +6,11 @@ using static Raylib_cs.Raylib;
 
 /*
     TODO:
-    - Make the enemy spawn from the edge of the screen
     - Make the enemy spawn from different edges
-    - Make the enemy spawn from random edges, max 2 in a row
-    - Adjust window size in realtime
+    - Enemy behaviours
 
     BUGS:
-    - All textures get unloaded when collision is detected
-    - Collision area is not 100% accurate
+    - Enemy spawns at 0,0
 */
 namespace ScreenSurge
 {
@@ -64,7 +61,6 @@ namespace ScreenSurge
                 {
                     // Randomly select an edge
                     int edge = Raylib.GetRandomValue(0, 4); // 0 = top, 1 = right, 2 = bottom, 3 = left
-                    Console.WriteLine("current edge is = " + edge);
 
                     // Randomly select a position on the edge
                     Vector2 spawnPosition;
@@ -95,6 +91,9 @@ namespace ScreenSurge
                     enemies.Add(new Enemy(spawnPosition));
 
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
+
+                    Console.WriteLine("current edge = " + edge);
+                    Console.WriteLine("current enemy spawnlocation = " + spawnPosition);
                 }
             }
 
