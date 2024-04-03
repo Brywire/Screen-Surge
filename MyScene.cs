@@ -56,10 +56,11 @@ namespace ScreenSurge
                 if (Raylib.GetTime() - lastEnemySpawnTime >= 0.5)
                 {
                     // Randomly select an edge
-                    int edge = Raylib.GetRandomValue(0, 4); // 0 = top, 1 = right, 2 = bottom, 3 = left
+                    int edge = Raylib.GetRandomValue(0, 3); // 0 = top, 1 = right, 2 = bottom, 3 = left
 
                     // Randomly select a position on the edge
                     Vector2 spawnPosition;
+                    //Vector2 spawnPosition = new Vector2(600,600);
                     switch (edge)
                     {
                         case 0:

@@ -8,7 +8,7 @@ class Player : Entity
     {
         // Loading the player sprite
         texture = Raylib.LoadTexture("resources/playerShipSprite.png");
-        this.position = new Vector2(MyScene.screenWidth / 2 - texture.Width / 2, MyScene.screenHeight / 2 - texture.Height / 2);
+        Position = new Vector2(MyScene.screenWidth / 2 - texture.Width / 2, MyScene.screenHeight / 2 - texture.Height / 2);
 
         // Setting speed and scaleFactor
         speed = 6.0f;
@@ -24,17 +24,12 @@ class Player : Entity
         Shoot();
     }
 
-    public Vector2 Position
-    {
-        get { return position; }
-    }
-
     // Rotate sprite to cursor
     public override float Angle
     {
         get
         {
-            Vector2 dist = new Vector2(direction.X - position.X, direction.Y - position.Y);
+            Vector2 dist = new Vector2(direction.X - Position.X, direction.Y - Position.Y);
             float result = MathF.Atan2(dist.Y, dist.X) * (180.0f / MathF.PI);
             return result;
         }
@@ -55,17 +50,17 @@ class Player : Entity
 
         movement *= speed;
 
-        position += movement;
+        Position += movement;
     }
     public void Shoot()
     {
         if (Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
             // Calculate the direction from the player to the mouse cursor
-            Vector2 bulletDirection = Vector2.Normalize(new Vector2(Raylib.GetMousePosition().X - position.X, Raylib.GetMousePosition().Y - position.Y));
+            Vector2 bulletDirection = Vector2.Normalize(new Vector2(Raylib.GetMousePosition().X - Position.X, Raylib.GetMousePosition().Y - Position.Y));
 
             // Spawn bullet at the player's position, with the calculated direction
-            MyScene.bullets.Add(new Bullet(bulletDirection, position));
+            MyScene.bullets.Add(new Bullet(bulletDirection, Position));
         }
     }
 }

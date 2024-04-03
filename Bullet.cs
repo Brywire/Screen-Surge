@@ -8,7 +8,7 @@ class Bullet : Entity
         texture = Raylib.LoadTexture("resources/bulletSprite.png");
         speed = 15.0f;
         scaleFactor = 1.5f;
-        position = startPosition;
+        Position = startPosition;
     }
 
     public override float Angle
@@ -21,6 +21,6 @@ class Bullet : Entity
 
     public override void Update()
     {
-        position += direction * speed;
+        Position += direction * speed;
     }
 }

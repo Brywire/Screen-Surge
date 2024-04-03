@@ -3,7 +3,7 @@ using Raylib_cs;
 
 abstract public class Entity
 {
-    protected Vector2 position;
+    public Vector2 Position;
     protected Texture2D texture;
     protected Vector2 direction;
     protected float speed;
@@ -12,6 +12,8 @@ abstract public class Entity
     public Entity(Vector2 direction)
     {
         this.direction = direction;
+        
+        Position = direction;
     }
 
     // Rotation angle to cursor
@@ -26,7 +28,7 @@ abstract public class Entity
     // Center point for collision
     public Vector2 GetCenter()
     {
-        return position;
+        return Position;
     }
 
     // Radius for collision
@@ -45,8 +47,8 @@ abstract public class Entity
 
         // Calculate the rectangle for the destination area considering the scaled dimensions
         Rectangle destRec = new Rectangle(
-            (int)position.X,
-            (int)position.Y,
+            (int)Position.X,
+            (int)Position.Y,
             scaledWidth,
             scaledHeight
         );
