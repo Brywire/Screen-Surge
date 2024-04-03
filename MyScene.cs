@@ -14,7 +14,6 @@ using static Raylib_cs.Raylib;
 */
 namespace ScreenSurge
 {
-
     class MyScene
     {
         public const int screenWidth = 800;
@@ -66,24 +65,24 @@ namespace ScreenSurge
                     Vector2 spawnPosition;
                     switch (edge)
                     {
-                        case 0: 
+                        case 0:
                             // Top edge
                             spawnPosition = new Vector2(Raylib.GetRandomValue(0, screenWidth), 0);
                             break;
-                        case 1: 
+                        case 1:
                             // Right edge
                             spawnPosition = new Vector2(screenWidth, Raylib.GetRandomValue(0, screenHeight));
                             break;
-                        case 2: 
+                        case 2:
                             // Bottom edge
                             spawnPosition = new Vector2(Raylib.GetRandomValue(0, screenWidth), screenHeight);
                             break;
-                        case 3: 
+                        case 3:
                             // Left edge
                             spawnPosition = new Vector2(0, Raylib.GetRandomValue(0, screenHeight));
                             break;
                         default:
-                            spawnPosition = new Vector2(0, 0); // For if something goes wrong
+                            spawnPosition = new Vector2(screenHeight / 2, screenWidth / 2); // For if something goes wrong
                             break;
                     }
 
@@ -132,7 +131,7 @@ namespace ScreenSurge
             {
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.Black);
-                
+
                 // Methods that need to be updated
                 updateBullets();
                 updatePlayer();
@@ -140,7 +139,7 @@ namespace ScreenSurge
                 checkCollisions();
                 enemySpawner();
                 enemiesLookForPlayer();
-        
+
 
                 Raylib.EndDrawing();
             }

@@ -13,7 +13,7 @@ class Enemy : Entity
         texture = Raylib.LoadTexture("resources/enemySprite.png");
         speed = 3.0f;
         scaleFactor = 1.0f;
-        position = new Vector2(MyScene.screenWidth / 2 - texture.Width / 2, MyScene.screenHeight / 2 - texture.Height / 2);
+        //position = new Vector2(MyScene.screenWidth / 2 - texture.Width / 2, MyScene.screenHeight / 2 - texture.Height / 2);
 
         Position = position;
         Texture = texture;
@@ -27,9 +27,10 @@ class Enemy : Entity
         Vector2 directionToTarget = Vector2.Normalize(targetPosition - position);
 
         // Rotate sprite towards the target
-         direction = directionToTarget;
+        direction = directionToTarget;
 
         // Move the enemy towards the player
         position += directionToTarget * speed;
+
     }
 }
