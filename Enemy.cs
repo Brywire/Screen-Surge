@@ -8,13 +8,12 @@ class Enemy : Entity
 
     public Texture2D Texture;
     public Vector2 targetPosition;
-    public Enemy(Vector2 position) : base(Vector2.Zero)
+    public Enemy(Vector2 position) : base(position)
     {
         texture = Raylib.LoadTexture("resources/enemySprite.png");
         speed = 3.0f;
         scaleFactor = 1.0f;
         //position = new Vector2(MyScene.screenWidth / 2 - texture.Width / 2, MyScene.screenHeight / 2 - texture.Height / 2);
-
         Position = position;
         Texture = texture;
 
