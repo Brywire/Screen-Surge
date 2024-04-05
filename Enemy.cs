@@ -1,6 +1,5 @@
 using System.Numerics;
 using Raylib_cs;
-// ScreenSurge;
 
 class Enemy : Entity
 {
