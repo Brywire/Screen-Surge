@@ -1,10 +1,9 @@
 using System.Numerics;
 using Raylib_cs;
-using ScreenSurge;
+// ScreenSurge;
 
 class Enemy : Entity
 {
-    public Texture2D Texture;
     public Vector2 targetPosition;
     public Enemy(Vector2 position) : base(position)
     {
@@ -12,8 +11,6 @@ class Enemy : Entity
 
         speed = 3.0f;
         scaleFactor = 1.0f;
-
-        Texture = texture;
 
         targetPosition = Vector2.Zero;
     }
