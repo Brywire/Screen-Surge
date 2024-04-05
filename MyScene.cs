@@ -3,11 +3,12 @@ using Raylib_cs;
 
 /*
     TODO:
-    - Make the enemy spawn from different edges
     - Enemy behaviours
+    - 
+    - 
 
     BUGS:
-    - Enemy spawns at 0,0
+    - Enemy sprite unloading
 */
 namespace ScreenSurge
 {
@@ -60,7 +61,6 @@ namespace ScreenSurge
 
                     // Randomly select a position on the edge
                     Vector2 spawnPosition;
-                    //Vector2 spawnPosition = new Vector2(600,600);
                     switch (edge)
                     {
                         case 0:
@@ -88,9 +88,6 @@ namespace ScreenSurge
                     enemies.Add(new Enemy(spawnPosition));
 
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
-
-                    Console.WriteLine("current edge = " + edge);
-                    Console.WriteLine("current enemy spawnlocation = " + spawnPosition);
                 }
             }
 
