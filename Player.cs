@@ -4,6 +4,10 @@ using ScreenSurge;
 
 class Player : Entity
 {
+    private bool isMouseButtonDown = false;
+    private float lastShotTime = 0.0f;
+    private float rateOfFire = 0.4f;
+
     public Player(Vector2 direction) : base(direction)
     {
         // Loading the player sprite
@@ -22,6 +26,16 @@ class Player : Entity
 
         Move();
         Shoot();
+
+        // Update mouse button state
+        if (Raylib.IsMouseButtonDown(MouseButton.Left))
+        {
+            isMouseButtonDown = true;
+        }
+        else if (Raylib.IsMouseButtonReleased(MouseButton.Left))
+        {
+            isMouseButtonDown = false;
+        }
     }
 
     // Rotate sprite to cursor
@@ -54,13 +68,15 @@ class Player : Entity
     }
     public void Shoot()
     {
-        if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+        if (isMouseButtonDown && Raylib.GetTime() - lastShotTime >= rateOfFire) // Check since when the last shot was fired
         {
             // Calculate the direction from the player to the mouse cursor
             Vector2 bulletDirection = Vector2.Normalize(new Vector2(Raylib.GetMousePosition().X - Position.X, Raylib.GetMousePosition().Y - Position.Y));
 
             // Spawn bullet at the player's position, with the calculated direction
             MyScene.bullets.Add(new Bullet(bulletDirection, Position));
+
+            lastShotTime = (float)Raylib.GetTime(); // Update the time of the last shot
         }
     }
 }
