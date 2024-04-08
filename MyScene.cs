@@ -1,4 +1,7 @@
-﻿using System.Numerics;
+﻿//using System;
+using System.Diagnostics;
+//using System.Runtime.InteropServices;
+using System.Numerics;
 using Raylib_cs;
 
 /*
@@ -18,11 +21,25 @@ namespace ScreenSurge
         public const int screenHeight = 800;
         static public List<Bullet> bullets = new List<Bullet>();
         static public List<Enemy> enemies = new List<Enemy>();
+
+        private static IntPtr GetWindowHandle() // Retrieves handle to the main window of application
+        {
+            return Process.GetCurrentProcess().MainWindowHandle;
+        }
+
+        private static double lastResizeTime = 0.0;
+        private static double resizeInterval = 0.01;
+
         public static void Main()
         {
 
             //Making the window
             Raylib.InitWindow(screenWidth, screenHeight, "Screen Surge");
+
+            IntPtr windowHandle = GetWindowHandle();
+
+            int shrinkAmount = 1;
+
 
             Player playerShip = new Player(Raylib.GetMousePosition());
             double lastEnemySpawnTime = Raylib.GetTime();
@@ -134,6 +151,13 @@ namespace ScreenSurge
                 checkCollisions();
                 enemySpawner();
                 enemiesLookForPlayer();
+
+                double currentTime = Raylib.GetTime();
+                if (currentTime - lastResizeTime >= resizeInterval)
+                {
+                    WindowResizer.ShrinkWindowBy(windowHandle, shrinkAmount);
+                    lastResizeTime = currentTime;
+                }
 
 
                 Raylib.EndDrawing();
