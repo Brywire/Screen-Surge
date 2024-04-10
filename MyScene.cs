@@ -21,8 +21,8 @@ namespace ScreenSurge
     {
         public const int screenWidth = 800; // Initial window width
         public const int screenHeight = 800; // Initial window height
-        public const int minWindowWidth = 300; // Minimum window width
-        public const int minWindowHeight = 300; // Minimum window height
+        public const int minWindowWidth = 400; // Minimum window width
+        public const int minWindowHeight = 400; // Minimum window height
         static public List<Bullet> bullets = new List<Bullet>();
         static public List<Enemy> enemies = new List<Enemy>();
         private static double lastResizeTime = 0.0;
@@ -111,8 +111,7 @@ namespace ScreenSurge
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
                 }
             }
-
-            void checkCollisions()
+            void bulletToEnemyCollision()
             {
                 for (int i = bullets.Count - 1; i >= 0; i--)
                 {
@@ -131,6 +130,12 @@ namespace ScreenSurge
                         }
                     }
                 }
+
+            }
+
+            void checkCollisions()
+            {
+                bulletToEnemyCollision();
             }
 
             void enemiesLookForPlayer()
@@ -159,7 +164,6 @@ namespace ScreenSurge
                     lastResizeTime = currentTime;
                     }
                 }
-
             }
             
             Raylib.SetTargetFPS(60);
