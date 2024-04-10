@@ -24,14 +24,14 @@ namespace ScreenSurge
         public const int screenHeight = 800;
         static public List<Bullet> bullets = new List<Bullet>();
         static public List<Enemy> enemies = new List<Enemy>();
+        private static double lastResizeTime = 0.0;
+        private static double resizeInterval = 0.01;
 
         private static IntPtr GetWindowHandle() // Retrieves handle to the main window of application
         {
             return Process.GetCurrentProcess().MainWindowHandle;
         }
 
-        private static double lastResizeTime = 0.0;
-        private static double resizeInterval = 0.01;
 
         public static void Main()
         {
@@ -140,6 +140,18 @@ namespace ScreenSurge
                 }
 
             }
+
+            void updateWindow()
+            {
+                double currentTime = Raylib.GetTime();
+                if (currentTime - lastResizeTime >= resizeInterval)
+                {
+                    WindowResizer.ShrinkWindowBy(windowHandle, shrinkAmount);
+                    lastResizeTime = currentTime;
+                }
+
+            }
+            
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())
@@ -154,13 +166,8 @@ namespace ScreenSurge
                 checkCollisions();
                 enemySpawner();
                 enemiesLookForPlayer();
+                updateWindow();
 
-                double currentTime = Raylib.GetTime();
-                if (currentTime - lastResizeTime >= resizeInterval)
-                {
-                    WindowResizer.ShrinkWindowBy(windowHandle, shrinkAmount);
-                    lastResizeTime = currentTime;
-                }
 
 
                 Raylib.EndDrawing();
