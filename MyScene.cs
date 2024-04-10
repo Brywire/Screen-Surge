@@ -4,7 +4,6 @@ using Raylib_cs;
 
 /*
     TODO:
-    - Minimum Window size
     - Bullet Collision on Window
     - Expand Window when Bullet collides
     - Move Window when Window expands
@@ -20,8 +19,10 @@ namespace ScreenSurge
 {
     class MyScene
     {
-        public const int screenWidth = 800;
-        public const int screenHeight = 800;
+        public const int screenWidth = 800; // Initial window width
+        public const int screenHeight = 800; // Initial window height
+        public const int minWindowWidth = 300; // Minimum window width
+        public const int minWindowHeight = 300; // Minimum window height
         static public List<Bullet> bullets = new List<Bullet>();
         static public List<Enemy> enemies = new List<Enemy>();
         private static double lastResizeTime = 0.0;
@@ -141,13 +142,22 @@ namespace ScreenSurge
 
             }
 
-            void updateWindow()
+            void updateWindowShrinking()
             {
                 double currentTime = Raylib.GetTime();
                 if (currentTime - lastResizeTime >= resizeInterval)
                 {
+                    // Get the current window size
+                    WindowResizer.GetWindowRect(windowHandle, out WindowResizer.RECT rect);
+                    int currentWidth = rect.Right - rect.Left;
+                    int currentHeight = rect.Bottom - rect.Top;
+
+                    // Check if the window is already at or below the minimum size
+                    if (currentWidth > minWindowWidth && currentHeight > minWindowHeight)
+                    {
                     WindowResizer.ShrinkWindowBy(windowHandle, shrinkAmount);
                     lastResizeTime = currentTime;
+                    }
                 }
 
             }
@@ -166,7 +176,7 @@ namespace ScreenSurge
                 checkCollisions();
                 enemySpawner();
                 enemiesLookForPlayer();
-                updateWindow();
+                updateWindowShrinking();
 
 
 
