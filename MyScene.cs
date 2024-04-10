@@ -1,17 +1,20 @@
-﻿//using System;
-using System.Diagnostics;
-//using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
 using System.Numerics;
 using Raylib_cs;
 
 /*
     TODO:
-    - Enemy behaviours
-    - 
+    - Minimum Window size
+    - Bullet Collision on Window
+    - Expand Window when Bullet collides
+    - Move Window when Window expands
+    - Boids
     - 
 
     BUGS:
     - Enemy sprite unloading
+    - Enemies overlapping (Boids)
+    - 
 */
 namespace ScreenSurge
 {
