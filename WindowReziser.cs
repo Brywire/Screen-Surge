@@ -14,7 +14,7 @@ public class WindowResizer
 
     // Import GetWindowRect from user32.dll
     [DllImport("user32.dll", SetLastError = true)]
-    static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect); // Getting current window size
+    public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect); // Getting current window size
 
     // Define the RECT structure
     [StructLayout(LayoutKind.Sequential)]
@@ -38,5 +38,4 @@ public class WindowResizer
 
         SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, newWidth, newHeight, SWP_NOMOVE | SWP_NOZORDER);
     }
-
 }
