@@ -4,7 +4,6 @@ using Raylib_cs;
 
 /*
     TODO:
-    - Bullet Collision on Window
     - Expand Window when Bullet collides
     - Move Window when Window expands
     - Boids
@@ -50,10 +49,19 @@ namespace ScreenSurge
 
             void updateBullets()
             {
-                foreach (var bullet in bullets)
+                for (int i = bullets.Count - 1; i >= 0; i--)
                 {
+                    Bullet bullet = bullets[i];
                     bullet.Update();
                     bullet.Draw();
+
+                    // Check if the bullet has hit the window border
+                    if (bullet.hasHitWindowBorder(screenWidth, screenHeight))
+                    {
+                        // Remove the bullet
+                        bullets.RemoveAt(i);
+                        bullet.Destroy(); // Destroy bullet texture
+                    }
                 }
             }
 
@@ -111,6 +119,7 @@ namespace ScreenSurge
                     lastEnemySpawnTime = Raylib.GetTime(); // Reset the timer
                 }
             }
+
             void bulletToEnemyCollision()
             {
                 for (int i = bullets.Count - 1; i >= 0; i--)
@@ -160,12 +169,12 @@ namespace ScreenSurge
                     // Check if the window is already at or below the minimum size
                     if (currentWidth > minWindowWidth && currentHeight > minWindowHeight)
                     {
-                    WindowResizer.ShrinkWindowBy(windowHandle, shrinkAmount);
-                    lastResizeTime = currentTime;
+                        WindowResizer.ShrinkWindowBy(windowHandle, shrinkAmount);
+                        lastResizeTime = currentTime;
                     }
                 }
             }
-            
+
             Raylib.SetTargetFPS(60);
 
             while (!Raylib.WindowShouldClose())
