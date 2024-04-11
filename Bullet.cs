@@ -1,11 +1,13 @@
 using System.Numerics;
 using Raylib_cs;
+using ScreenSurge;
 
 class Bullet : Entity
 {
-    public Bullet(Vector2 direction, Vector2 startPosition) : base(direction)
+    public Bullet(Vector2 direction, Vector2 startPosition) : base(direction, "bulletSprite.png")
     {
-        texture = Raylib.LoadTexture("resources/bulletSprite.png");
+        // Load bullet texture using ResourceManager
+        texture = ResourceManager.Instance.LoadTexture(textureName);
         speed = 15.0f;
         scaleFactor = 1.5f;
         Position = startPosition;

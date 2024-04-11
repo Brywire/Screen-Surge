@@ -8,10 +8,12 @@ class Player : Entity
     private float lastShotTime = 0.0f;
     private float rateOfFire = 0.4f;
 
-    public Player(Vector2 direction) : base(direction)
+    public Player(Vector2 direction) : base(direction, "playerShipSprite.png")
     {
-        // Loading the player sprite
-        texture = Raylib.LoadTexture("resources/playerShipSprite.png");
+        // Load player texture using ResourceManager
+        texture = ResourceManager.Instance.LoadTexture(textureName);
+
+        // Starting position
         Position = new Vector2(MyScene.screenWidth / 2 - texture.Width / 2, MyScene.screenHeight / 2 - texture.Height / 2);
 
         // Setting speed and scaleFactor

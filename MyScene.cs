@@ -41,6 +41,9 @@ namespace ScreenSurge
 
             IntPtr windowHandle = GetWindowHandle();
 
+            // Initialize the ResourceManager
+            ResourceManager.Initialize("resources");
+
             int shrinkAmount = 1;
 
 
@@ -205,6 +208,7 @@ namespace ScreenSurge
             {
                 enemy.Destroy();
             }
+            ResourceManager.Instance.UnloadAllTextures();
             Raylib.CloseWindow();
         }
     }

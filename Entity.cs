@@ -1,18 +1,20 @@
 using System.Numerics;
 using Raylib_cs;
+using ScreenSurge;
 
 abstract public class Entity
 {
     public Vector2 Position;
     protected Texture2D texture;
+    protected string textureName;
     protected Vector2 direction;
     protected float speed;
     protected float scaleFactor;
     
-    public Entity(Vector2 direction)
+    public Entity(Vector2 direction, string textureName)
     {
         this.direction = direction;
-        
+        this.textureName = textureName;
         Position = direction;
     }
 
@@ -68,6 +70,7 @@ abstract public class Entity
 
     public void Destroy()
     {
-        Raylib.UnloadTexture(texture);
+        // Unload the texture using the textureName
+        ResourceManager.Instance.UnloadTexture(textureName);
     }
 }
