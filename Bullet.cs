@@ -23,4 +23,17 @@ class Bullet : Entity
     {
         Position += direction * speed;
     }
+
+    public bool hasHitWindowBorder(int windowWidth, int windowHeight)
+    {
+        // Check if the bullet's position is outside the window
+        if (Position.X < 0 || 
+        Position.X > windowWidth || 
+        Position.Y < 0 || 
+        Position.Y > windowHeight)
+        {
+            return true;
+        }
+        return false;
+    }
 }
