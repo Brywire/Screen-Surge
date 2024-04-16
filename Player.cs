@@ -6,7 +6,7 @@ class Player : Entity
 {
     private bool isMouseButtonDown = false;
     private float lastShotTime = 0.0f;
-    private float rateOfFire = 0.4f;
+    private float rateOfFire = 0.2f;
 
     public Player(Vector2 direction) : base(direction, "playerShipSprite.png")
     {

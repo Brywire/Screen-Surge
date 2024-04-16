@@ -71,6 +71,6 @@ abstract public class Entity
     public void Destroy()
     {
         // Unload the texture using the textureName
-        ResourceManager.Instance.UnloadTexture(textureName);
+        //ResourceManager.Instance.UnloadTexture(textureName);
     }
 }

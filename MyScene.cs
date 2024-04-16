@@ -86,7 +86,7 @@ namespace ScreenSurge
             void enemySpawner()
             {
                 // Timer between enemy spawning
-                if (Raylib.GetTime() - lastEnemySpawnTime >= 0.5)
+                if (Raylib.GetTime() - lastEnemySpawnTime >= 1)
                 {
                     // Randomly select an edge
                     int edge = Raylib.GetRandomValue(0, 3); // 0 = top, 1 = right, 2 = bottom, 3 = left
@@ -136,8 +136,10 @@ namespace ScreenSurge
                             // Collision detected, destroy both the bullet and the enemy
                             bullet.Destroy();
                             bullets.RemoveAt(i);
+                            Console.WriteLine("Deleted Bullet");
                             enemy.Destroy();
                             enemies.RemoveAt(j);
+                            Console.WriteLine("Deleted Enemy");
                             break; // Break the inner loop as the bullet has been destroyed
                         }
                     }
@@ -192,7 +194,7 @@ namespace ScreenSurge
                 checkCollisions();
                 enemySpawner();
                 enemiesLookForPlayer();
-                updateWindowShrinking();
+                //updateWindowShrinking();
 
 
 
