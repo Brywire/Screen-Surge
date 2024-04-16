@@ -3,14 +3,12 @@ using System.Numerics;
 using Raylib_cs;
 
 /*
-    TODO:
-    - Expand Window when Bullet collides
+    TODO
     - Move Window when Window expands
     - Boids
     - 
 
     BUGS:
-    - Enemy sprite unloading
     - Enemies overlapping (Boids)
     - 
 */
@@ -59,8 +57,12 @@ namespace ScreenSurge
                     bullet.Draw();
 
                     // Check if the bullet has hit the window border
-                    if (bullet.hasHitWindowBorder(screenWidth, screenHeight))
+                    BorderSide sideHit = bullet.hasHitWindowBorder(screenWidth, screenHeight);
+                    if (sideHit != BorderSide.None)
                     {
+                        // Expand the window on the side hit by the bullet
+                        WindowResizer.ExpandWindowBy(windowHandle, 100, sideHit); // Expand by 10 pixels
+
                         // Remove the bullet
                         bullets.RemoveAt(i);
                         bullet.Destroy(); // Destroy bullet texture
@@ -86,7 +88,7 @@ namespace ScreenSurge
             void enemySpawner()
             {
                 // Timer between enemy spawning
-                if (Raylib.GetTime() - lastEnemySpawnTime >= 1)
+                if (Raylib.GetTime() - lastEnemySpawnTime >= 5)
                 {
                     // Randomly select an edge
                     int edge = Raylib.GetRandomValue(0, 3); // 0 = top, 1 = right, 2 = bottom, 3 = left
@@ -194,7 +196,7 @@ namespace ScreenSurge
                 checkCollisions();
                 enemySpawner();
                 enemiesLookForPlayer();
-                //updateWindowShrinking();
+                updateWindowShrinking();
 
 
 

@@ -1,6 +1,15 @@
 using System.Numerics;
 using ScreenSurge;
 
+public enum BorderSide
+    {
+        None,
+        Top,
+        Right,
+        Bottom,
+        Left
+    }
+
 class Bullet : Entity
 {
     public Bullet(Vector2 direction, Vector2 startPosition) : base(direction, "bulletSprite.png")
@@ -25,16 +34,12 @@ class Bullet : Entity
         Position += direction * speed;
     }
 
-    public bool hasHitWindowBorder(int windowWidth, int windowHeight)
+    public BorderSide hasHitWindowBorder(int windowWidth, int windowHeight)
     {
-        // Check if the bullet's position is outside the window
-        if (Position.X < 0 || 
-        Position.X > windowWidth || 
-        Position.Y < 0 || 
-        Position.Y > windowHeight)
-        {
-            return true;
-        }
-        return false;
+        if (Position.X <= 0) return BorderSide.Left;
+        if (Position.X >= windowWidth) return BorderSide.Right;
+        if (Position.Y <= 0) return BorderSide.Top;
+        if (Position.Y >= windowHeight) return BorderSide.Bottom;
+        return BorderSide.None;
     }
 }
