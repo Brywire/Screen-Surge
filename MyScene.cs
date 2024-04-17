@@ -9,6 +9,7 @@ using Raylib_cs;
     - 
 
     BUGS:
+    - New border width & height doesn't register with bullet collision.
     - Enemies overlapping (Boids)
     - 
 */
