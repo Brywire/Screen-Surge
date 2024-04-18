@@ -2,13 +2,13 @@ using System.Numerics;
 using ScreenSurge;
 
 public enum BorderSide
-    {
-        None,
-        Top,
-        Right,
-        Bottom,
-        Left
-    }
+{
+    None,
+    Top,
+    Right,
+    Bottom,
+    Left
+}
 
 class Bullet : Entity
 {
@@ -29,10 +29,22 @@ class Bullet : Entity
         }
     }
 
+
     public override void Update()
     {
         Position += direction * speed;
     }
+
+
+    /// <summary>
+    /// Determines if the bullet has hit the border of the window.
+    /// </summary>
+    /// <param name="windowWidth">The current width of the window.</param>
+    /// <param name="windowHeight">The current height of the window.</param>
+    /// <returns>
+    /// A value from the <see cref="BorderSide"/> enumeration indicating which border the bullet has hit,
+    /// or <see cref="BorderSide.None"/> if the bullet has not hit any border.
+    /// </returns>
 
     public BorderSide hasHitWindowBorder(int windowWidth, int windowHeight)
     {
